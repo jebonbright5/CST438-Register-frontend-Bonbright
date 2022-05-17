@@ -61,7 +61,16 @@ class Semester extends Component {
                       semester:SEMESTER_LIST[this.state.selected].name}} 
                 variant="outlined" color="primary" style={{margin: 10}}>
                 Get Schedule
-              </Button>
+                </Button>
+
+                {/*AddStudentButton*/}
+                <Button component={Link}
+                    to={{
+                        pathname: '/student',
+                    }}
+                    variant="outlined" color="primary" style={{ margin: 10 }}>
+                    Add Student
+                </Button>
           </div>
       </div>
     )
