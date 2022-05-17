@@ -91,7 +91,9 @@ class SchedList extends Component {
         console.error(err);
       }) 
     } 
-  }
+    }
+
+
 
   // Add course
   addCourse = (course) => {

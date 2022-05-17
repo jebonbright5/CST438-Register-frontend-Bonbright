@@ -7,21 +7,22 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 
+//Organize later
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { SERVER_URL } from '../constants.js'
-import Grid from '@mui/material/Grid';
+
 
 class AddStudent extends Component {
     constructor(props) {
         super(props)
         this.state = {
             open: true,
-            //student: {
-            name: '',
-            email: ''
-            //}
+            student: {
+                name: '',
+                email: ''
+            }
         }
         //Start open for testing
     };
@@ -36,25 +37,25 @@ class AddStudent extends Component {
 
     handleChangeName = (event) => {
         this.setState({
-            name: event.target.value
+            student: { ...this.state.student, name: event.target.value}
         });
     }
 
     handleChangeEmail = (event) => {
         this.setState({
-            email: event.target.value
+            student: { ...this.state.student, email: event.target.value }
         });
     }
 
     // Save student and close modal form
     handleAdd = () => {
-        console.log("state" + JSON.stringify(this.state));
-        this.props.addStudent(this.state);
+        //console.log("state" + JSON.stringify(this.state));
+        this.addstudent();
         this.handleClose();
     }
 
     // add student
-    addstudent = (student) => {
+    addstudent = () => {
         const token = Cookies.get('xsrf-token');
 
         fetch(`${SERVER_URL}/student`,
@@ -64,7 +65,7 @@ class AddStudent extends Component {
                     'content-type': 'application/json',
                     'x-xsrf-token': token
                 },
-                body: JSON.stringify(student)
+                body: JSON.stringify(this.state.student)
             })
             .then(res => {
                 if (res.ok) {

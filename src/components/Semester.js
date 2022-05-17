@@ -67,6 +67,7 @@ class Semester extends Component {
                 <Button component={Link}
                     to={{
                         pathname: '/student',
+
                     }}
                     variant="outlined" color="primary" style={{ margin: 10 }}>
                     Add Student
