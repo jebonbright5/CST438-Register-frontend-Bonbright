@@ -124,6 +124,37 @@ class SchedList extends Component {
     })
   } 
 
+  //// add student
+  //addstudent = (student) => {
+  //  const token = Cookies.get('xsrf-token');
+ 
+  //  fetch(`${SERVER_URL}/student`,
+  //    { 
+  //      method: 'post', 
+  //      headers: { 'content-type': 'application/json',
+  //                 'x-xsrf-token': token  }, 
+  //      body: JSON.stringify(student)
+  //    })
+  //  .then(res => {
+  //      if (res.ok) {
+  //        toast.success("student successfully added", {
+  //            position: toast.position.bottom_left
+  //        });
+  //      //  this.fetchcourses();
+  //      } else {
+  //        toast.error("error when adding", {
+  //            position: toast.position.bottom_left
+  //        });
+  //        console.error('post http status =' + res.status);
+  //      }})
+  //  .catch(err => {
+  //    toast.error("error when adding", {
+  //          position: toast.position.bottom_left
+  //      });
+  //      console.error(err);
+  //  })
+  //} 
+
   render() {
      const columns = [
       { field: 'title', headerName: 'Title', width: 400 },
