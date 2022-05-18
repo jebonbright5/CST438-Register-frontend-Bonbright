@@ -12,13 +12,14 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie';
 import { SERVER_URL } from '../constants.js'
+import { Grid } from '@mui/material';
 
 
 class AddStudent extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            open: true,
+            open: false,
             student: {
                 name: '',
                 email: ''
@@ -37,7 +38,7 @@ class AddStudent extends Component {
 
     handleChangeName = (event) => {
         this.setState({
-            student: { ...this.state.student, name: event.target.value}
+            student: { ...this.state.student, name: event.target.value }
         });
     }
 
@@ -60,28 +61,30 @@ class AddStudent extends Component {
 
         fetch(`${SERVER_URL}/student`,
             {
-                method: 'post',
+                method: 'POST',
                 headers: {
-                    'content-type': 'application/json',
-                    'x-xsrf-token': token
+                    'Content-Type': 'application/json',
+                    'X-XSRF-TOKEN': token
                 },
                 body: JSON.stringify(this.state.student)
             })
             .then(res => {
                 if (res.ok) {
-                    toast.success("student successfully added", {
-                        position: toast.position.bottom_left
+                    console.log('res.ok');
+                    toast.success("Student successfully added", {
+                        position: toast.POSITION.BOTTOM_LEFT
                     });
                 } else {
-                    toast.error("error when adding", {
-                        position: toast.position.bottom_left
+                    console.log('else res.ok');
+                    toast.error("Error when adding", {
+                        position: toast.POSITION.BOTTOM_LEFT
                     });
-                    console.error('post http status =' + res.status);
+                    console.error('Post http status =' + res.status);
                 }
             })
             .catch(err => {
-                toast.error("error when adding", {
-                    position: toast.position.bottom_left
+                toast.error("Error when adding", {
+                    position: toast.POSITION.BOTTOM_LEFT
                 });
                 console.error(err);
             })
@@ -93,6 +96,7 @@ class AddStudent extends Component {
                 <Button variant="outlined" color="primary" style={{ margin: 10 }} onClick={this.handleClickOpen}>
                     Add Student
                 </Button>
+
                 <div style={{ width: '100%' }}>
                     For DEBUG:  display state.
                     {JSON.stringify(this.state)}
@@ -109,6 +113,8 @@ class AddStudent extends Component {
                         <Button color="primary" onClick={this.handleAdd}>Add</Button>
                     </DialogActions>
                 </Dialog>
+                <ToastContainer autoClose={1500} />
+
             </div>
         );
     }

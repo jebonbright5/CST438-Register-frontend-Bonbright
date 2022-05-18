@@ -6,7 +6,19 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Radio from '@mui/material/Radio';
 import {DataGrid} from '@mui/x-data-grid';
-import {SEMESTER_LIST} from '../constants.js'
+import { SEMESTER_LIST } from '../constants.js'
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import PropTypes from 'prop-types';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogTitle from '@mui/material/DialogTitle';
+import TextField from '@mui/material/TextField';
+
+import AddStudent from './AddStudent';
 
 // user selects from a list of  (year, semester) values
 class Semester extends Component {
@@ -63,15 +75,8 @@ class Semester extends Component {
                 Get Schedule
                 </Button>
 
-                {/*AddStudentButton*/}
-                <Button component={Link}
-                    to={{
-                        pathname: '/student',
-
-                    }}
-                    variant="outlined" color="primary" style={{ margin: 10 }}>
-                    Add Student
-                </Button>
+                <AddStudent />
+                  
           </div>
       </div>
     )
